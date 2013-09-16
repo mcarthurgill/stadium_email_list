@@ -1,7 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+teams = ['Boston College', 'Clemson University', 'Duke University','Florida State University','Georgia Tech','North Carolina State University','Syracuse University','University of Maryland','University of Miami','University of North Carolina','University of Pittsburgh','University of Virginia','Virginia Tech','Wake Forest University','Baylor University','Iowa State University','Kansas State University','Oklahoma State University','Texas Christian University', 'Texas Tech University','University of Kansas','University of Oklahoma','West Virginia University','University of Texas','Indiana University','Michigan State University','Northwestern University','Ohio State University','Penn State University','Purdue University','University of Illinois','University of Iowa','University of Michigan','University of Minnesota','University of Nebraska','University of Wisconsin','Brigham Young University','Notre Dame','Arizona State University','Oregon State University','Stanford University','University of Arizona','University of California - Los Angeles','University of Colorado','University of Oregon','University of Southern California','University of Utah','University of Washington','Washington State University','University of California - Berkeley','Auburn University','Louisiana State University','Mississippi State University','Texas A&M University','University of Alabama','University of Arkansas','University of Florida','University of Georgia','University of Kentucky','University of Mississippi (Ole Miss)','University of Missouri','University of South Carolina','University of Tennessee','Vanderbilt University','Rutgers University','Southern Methodist University','Temple University','University of Central Florida','University of Cincinnati','University of Connecticut','University of Houston','University of Louisville','University of Memphis','University of South Florida']
+
+Team.delete_all
+
+teams.each do |team_name|
+	Team.create(name: team_name)
+	p "Creating #{team_name}"
+end
