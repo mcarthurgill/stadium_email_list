@@ -5,6 +5,6 @@
 <%= form_for @recipient do |f| %>
 	<%= f.text_area(:email, cols: 40, rows: 10) %><br>
 	<%= f.select :team_id, team_names_and_values %><br>
-	<%= f.submit %>
+	<%= f.submit "Add to Mailchimp Lists" %>
 <% end %>
 

@@ -4,6 +4,6 @@ module ApplicationHelper
 		Team.all.each do |team|
 			return_array << [team.name, team.id]
 		end
-		return_array
+		return_array.sort
 	end
 end
