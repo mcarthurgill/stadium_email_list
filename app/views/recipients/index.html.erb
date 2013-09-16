@@ -1,0 +1,8 @@
+<h4>All Recipients</h4>
+<ul>
+	<% @recipients.each do |recipient| %>
+		<li><%= recipient.team.name %> ---- <%= recipient.email %></li>
+	<% end %>
+</ul>
+
+<%= link_to "add new emails", new_recipient_path %>

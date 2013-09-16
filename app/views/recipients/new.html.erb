@@ -1,1 +1,10 @@
-new bitches
+<%= link_to "see all emails", recipients_path %>
+
+<h4>add emails in comma separated list</h4>
+
+<%= form_for @recipient do |f| %>
+	<%= f.text_area(:email, cols: 40, rows: 10) %><br>
+	<%= f.select :team_id, team_names_and_values %><br>
+	<%= f.submit %>
+<% end %>
+
