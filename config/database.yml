@@ -1,8 +1,14 @@
+#   gem 'sqlite3'
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: stadium_email_list_development
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
+  timeout: 5000
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: stadium_email_list_development
+#   pool: 5
 test:
   adapter: postgresql
   encoding: unicode
