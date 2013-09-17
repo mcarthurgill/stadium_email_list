@@ -9,7 +9,7 @@ class RecipientsController < ApplicationController
 	end
 
 	def create
-		emails = params[:recipient][:email].split(",")
+		emails = parse_for_emails_or_phone_numbers(params[:recipient][:email])
 		team_id = params[:recipient][:team_id]
 		team_name = Team.find(team_id).name
 
@@ -25,4 +25,54 @@ class RecipientsController < ApplicationController
 
 		redirect_to root_path
 	end
+
+
+	protected
+	def parse_for_emails_or_phone_numbers text
+
+  	  if !text
+    	return []
+  	  end
+      #explode string
+	  text_array = text.split(
+	    /\s*[,;]\s* # comma or semicolon, optionally surrounded by whitespace
+	    |           # or
+	    \s{2,}      # two or more whitespace characters
+	    |           # or
+	    [\r\n]+     # any number of newline characters
+	    /x)
+
+  	  new_array = []
+	  text_array.each do |s|
+
+  		#look at each string
+  		s.downcase!
+  		s = s.gsub(" ", "")
+  		s = s.gsub(",", "")
+  		s = s.gsub(";", "")
+  		s = s.gsub("+", "")
+  		s = s.gsub("-", "")
+  		s = s.gsub("(", "")
+  		s = s.gsub(")", "")
+  		s = s.gsub("[", "")
+  		s = s.gsub("]", "")
+  		s = s.gsub("#", "")
+
+  		if s =~ /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  			new_array << s
+  		elsif s.scan(/<([^<>]*)>/imu).flatten.count > 0
+  			email_within = s.scan(/<([^<>]*)>/imu).flatten
+  			email_within.each do |ew|
+  				if ew =~ /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  					new_array << ew
+  				end
+  			end
+  		end
+
+	  	end
+
+	  	return new_array
+	end
+
+	
 end
