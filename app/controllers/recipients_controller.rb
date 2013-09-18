@@ -37,7 +37,7 @@ class RecipientsController < ApplicationController
 	  text_array = text.split(
 	    /\s*[,;]\s* # comma or semicolon, optionally surrounded by whitespace
 	    |           # or
-	    \s{2,}      # two or more whitespace characters
+	    \s{1,}      # one or more whitespace characters
 	    |           # or
 	    [\r\n]+     # any number of newline characters
 	    /x)
