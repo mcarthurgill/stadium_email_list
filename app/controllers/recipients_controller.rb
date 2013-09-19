@@ -14,6 +14,8 @@ class RecipientsController < ApplicationController
 		team_name = Team.find(team_id).name
 
 		gb = Gibbon::API.new('a7ae9403bbec1533e0a67c0b46a08a12-us7')
+		gb.timeout = 5
+		gb.throws_exceptions = false
 		list_id = gb.lists.list({:filters => {:list_name => team_name}})["data"].first["id"]
 		all_universities_list_id = gb.lists.list({:filters => {:list_name => "All Universities"}})["data"].first["id"]
 
