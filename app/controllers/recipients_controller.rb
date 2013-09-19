@@ -20,9 +20,9 @@ class RecipientsController < ApplicationController
 		all_universities_list_id = gb.lists.list({:filters => {:list_name => "All Universities"}})["data"].first["id"]
 
 		emails.each do |email|
-			Recipient.find_or_create_by_email(email: email.strip, team_id: team_id)
-			gb.lists.subscribe({:id => list_id, :email => {:email => email.strip}, :double_optin => false})
-			gb.lists.subscribe({:id => all_universities_list_id, :email => {:email => email.strip}, :double_optin => false})
+			Recipient.find_or_create_by_email(email: email.strip.downcase, team_id: team_id)
+			#gb.lists.subscribe({:id => list_id, :email => {:email => email.strip}, :double_optin => false})
+			#gb.lists.subscribe({:id => all_universities_list_id, :email => {:email => email.strip}, :double_optin => false})
 		end
 
 		redirect_to root_path
